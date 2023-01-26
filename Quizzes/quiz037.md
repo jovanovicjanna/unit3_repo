@@ -1,5 +1,5 @@
 # Quiz 037
-## Test
+## Code
 ```.py
 class CompoundInterest:
     def __init__(self, principal:int,rate:int,years:int):
@@ -30,3 +30,5 @@ class AccountingProgram:
 Save = CompoundInterest(principal=100,rate=0.1,years=10)
 print(Save.Calculate())
 ```
+## Test
+![](
