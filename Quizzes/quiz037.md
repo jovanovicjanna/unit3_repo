@@ -31,4 +31,4 @@ Save = CompoundInterest(principal=100,rate=0.1,years=10)
 print(Save.Calculate())
 ```
 ## Test
-![](
+![](Screen%20Shot%202023-01-26%20at%2023.47.06.png)
