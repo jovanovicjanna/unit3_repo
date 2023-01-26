@@ -26,4 +26,5 @@ def test_multiple_common_elements():
   assert mystery([1, 2, 3, 4], [3, 4, 5, 6]) == [3, 4]
   ```
 ## Evidence
+![](Screen%20Shot%202023-01-26%20at%2023.20.15.png)
   
