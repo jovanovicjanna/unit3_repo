@@ -79,3 +79,5 @@ for i in range(0, len(Japan.cities)-1):
 print(f"The total distance for this solution of the Salesman's problem is {total_distance}")
 plt.show()
 ```
+## Test
+![](Screen%20Shot%202023-01-26%20at%2023.51.03.png)
