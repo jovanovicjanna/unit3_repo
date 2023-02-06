@@ -80,4 +80,4 @@ def test_years_validation():
 
 ## UML diagram
 
-![](
+![](Screen%20Shot%202023-02-07%20at%200.02.44.png)
