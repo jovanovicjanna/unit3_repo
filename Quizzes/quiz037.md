@@ -77,3 +77,7 @@ def test_years_validation():
 ## Evidence
 
 ![](Screen%20Shot%202023-02-06%20at%2023.45.20.png)
+
+## UML diagram
+
+![](
