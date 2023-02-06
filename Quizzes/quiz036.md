@@ -87,3 +87,6 @@ def test_empty_classroom():
     with pytest.raises(ValueError):
         classroom.get_average_score()
 ```
+
+## Evidence
+![]()
