@@ -60,7 +60,7 @@ It provides a graphic picture of the system, its parts, and how they work togeth
 
 ## Wireframe diagram
 
-![](Wireframe%20diagram.png)
+![](Wireframe_diagram.png)
 
 Fig. 3 This is the wireframe diagram for the application
   
