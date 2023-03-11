@@ -68,3 +68,6 @@ This Wireframe Diagram displays the application's GUI's produced design. All six
 
 ## ER Diagram
   
+![](ER_Diagram.png)
+
+Fig. 4 This is the ER diagram 
