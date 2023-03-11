@@ -50,3 +50,14 @@ The output of the application will be a graphical user interface (GUI) instead o
 [^5]: “SQLite Advantages and Disadvantages - Javatpoint.” Www.javatpoint.com, www.javatpoint.com/sqlite-advantages-and-disadvantages. 
 
 # Criteria B: Design
+
+## System diagram
+![](systemdiagram.png)
+
+Fig. 2 This is the system diagram for the proposed solution.
+
+It provides a graphic picture of the system, its parts, and how they work together. The application will function on Python and KivyMD, as was already mentioned. The user will provide the application with a variety of inputs, all of which will be stored in a database using SQLite. The Pycharm program will be used to carry out all of this, and the output will be shown on a screen.
+
+## Wireframe diagram
+
+
