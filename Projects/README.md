@@ -60,5 +60,5 @@ It provides a graphic picture of the system, its parts, and how they work togeth
 
 ## Wireframe diagram
 
-![](Wireframe diagram.pneg)
+![](Wireframe%20diagram.png)
 
