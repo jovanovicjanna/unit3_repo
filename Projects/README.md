@@ -73,3 +73,13 @@ This Wireframe Diagram displays the application's GUI's produced design. All six
 Fig. 4 This is the ER diagram 
 
 This is the ER diagram for the database illustrating the relationship between the items table and users table from the "campuskonbini" database. In the items table, there are 6 different columns including id, user_id, date, item_name, quantity, and income which each column will have the specific data type after the column name. The second table has 4 columns which are username, id, email and password. This diagram also shows that 1 user can have multiple items.
+
+## UML Diagram
+
+![](UML_diagram.png)
+
+Fig. 5 This is UML diagram
+
+This UML diagram for the OOP classes illustrates the classes and methods utilized during the development of the application. It showcases two primary parent classes, namely MDApp and MDScreen. All the classes inherit the methods and attributes of these parent classes, which is demonstrated by the arrows displayed on the diagram.
+
+## Flow diagram
