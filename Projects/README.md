@@ -101,3 +101,7 @@ Based on the checked rows in a user interface data table, this function deletes 
 Fig. 8 This is flow chart for update function
   
 This function serves to update the table displayed in the History Screen. The purpose of this function is to keep the data table in sync with the database so that any changes made to the database are immediately reflected in the data table.
+
+## Test plan
+
+
