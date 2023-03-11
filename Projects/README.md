@@ -71,3 +71,5 @@ This Wireframe Diagram displays the application's GUI's produced design. All six
 ![](ER_Diagram.png)
 
 Fig. 4 This is the ER diagram 
+
+This is the ER diagram for the database illustrating the relationship between the items table and users table from the "campuskonbini" database. In the items table, there are 6 different columns including id, user_id, date, item_name, quantity, and income which each column will have the specific data type after the column name. The second table has 4 columns which are username, id, email and password. This diagram also shows that 1 user can have multiple items.
