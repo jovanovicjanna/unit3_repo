@@ -62,3 +62,9 @@ It provides a graphic picture of the system, its parts, and how they work togeth
 
 ![](Wireframe%20diagram.png)
 
+Fig. 3 This is the wireframe diagram for the application
+  
+This Wireframe Diagram displays the application's GUI's produced design. All six of the application's screens are displayed, along with the functionality of each button that was intended for use. The user can see which screen will open when they press the button thanks to the arrows that extend from the button to the screen.
+
+## ER Diagram
+  
