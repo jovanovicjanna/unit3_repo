@@ -82,4 +82,10 @@ Fig. 5 This is UML diagram
 
 This UML diagram for the OOP classes illustrates the classes and methods utilized during the development of the application. It showcases two primary parent classes, namely MDApp and MDScreen. All the classes inherit the methods and attributes of these parent classes, which is demonstrated by the arrows displayed on the diagram.
 
-## Flow diagram
+## Flow diagrams
+
+![](Try_register_flowchart.png)
+
+Fig. 6 This is flow chart for try_register function
+
+Figure shows the flow diagram of the method used for registration of a new user. It validates data entered for username, email, password and repeated password text fields, and if all credential requirements are met, data are stored successfully in the "campuskonbini" database.
