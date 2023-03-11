@@ -146,3 +146,6 @@ This function serves to update the table displayed in the History Screen. The pu
 | 26      | Finalize test plans                                      | Write test plan with inputs and expected outputs                                                                             | 45 minutes    | 7.3.2023.         | B        |
 | 27      | Finalize program based on the feedback                   | Add improvements to the code based on the clients feedback                                                                   | 4 hours       | 7.3.2023.         | C        |
 | 28      | Write criteria C                                         | Add parts of the code and descriptions                                                                                       | 2 hours       | 8.3.2023.         |          |
+
+  
+# Criteria C: Development
