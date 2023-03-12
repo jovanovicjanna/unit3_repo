@@ -500,6 +500,6 @@ https://drive.google.com/drive/u/0/folders/1K2QhjuonyezkKfoB4IXg2fWf1Mn0V1kK
   
 ## Clients approval of success criteria
 
-![](appendix1.png)
-
 ![](appendix2.png)
+
+![](appendix1.png)
