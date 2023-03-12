@@ -503,3 +503,29 @@ https://drive.google.com/drive/u/0/folders/1K2QhjuonyezkKfoB4IXg2fWf1Mn0V1kK
 ![](appendix2.png)
 
 ![](appendix1.png)
+
+## Screens
+
+![](WelcomeScreen.png)
+
+Fig. 9 Shows WelcomeScreen
+
+![](RegisterScreen.png)
+
+Fig. 10 Shows RegistrationScreen
+
+![](LoginScreen.png)
+
+Fig. 11 Shows LoginScreen
+
+![](HomeScreen.png)
+
+Fig. 12 Shows HomeScreen
+
+![](InputScreen.png)
+
+Fig. 13 Shows InputScreen
+
+![](HistoryScreen.png)
+
+Fig. 14 Shows HistoryScreen
