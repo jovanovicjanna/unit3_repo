@@ -510,7 +510,7 @@ https://drive.google.com/drive/u/0/folders/1K2QhjuonyezkKfoB4IXg2fWf1Mn0V1kK
 
 Fig. 9 Shows WelcomeScreen
 
-![](RegisterScreen.png)
+![](RegistrationScreen.png)
 
 Fig. 10 Shows RegistrationScreen
 
