@@ -489,3 +489,13 @@ This code creates a dialog box using KivyMD to notify the user that an item has 
         self.update()
   ```
 The code above demonstrates how to remove checked rows from a database table. The get row checks() method is used in the code to access the checked rows, and a loop and a delete query are used to delete them. In order to warn the user that the item has been destroyed, the code also makes use of the MDDialog method. Other parts of the code use this structure to display pop-up dialogs.
+  
+# Criteria D: Functionality
+  
+## Video showing the functionality of the appliction
+  
+https://drive.google.com/drive/u/0/folders/1K2QhjuonyezkKfoB4IXg2fWf1Mn0V1kK
+  
+# Appendix
+  
+
