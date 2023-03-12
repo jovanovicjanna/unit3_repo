@@ -149,3 +149,123 @@ This function serves to update the table displayed in the History Screen. The pu
 
   
 # Criteria C: Development
+  
+## Techniques used
+ 
+1. Object orianted programming (OOP)
+2. SQLite Database
+3. Variables
+4. For loops
+5. If statements
+6. Functions
+7. Password hashing
+  
+## KivyMD UI Code
+  
+## Screen Manager
+  
+```.kv
+ ScreenManager:
+    WelcomeScreen:
+        name: "WelcomeScreen"
+
+    LoginScreen:
+        name: "LoginScreen"
+
+    RegistrationScreen:
+        name: "RegistrationScreen"
+
+    HomeScreen:
+        name: "HomeScreen"
+
+    InputScreen:
+        name: "InputScreen"
+
+    HistoryScreen:
+        name: "HistoryScreen"
+```
+This KivyMD code is the backbone setup of the GUI. Screen manager offers a quick and easy way to arrange and transition between several program screens. This feature enables users to perform different tasks and access different functionalities without any confusion. By using a screen manager, I as a developer can organize my code into logical sections based on the different screens and functionalities of the application. This makes it easier to maintain, update and debug the code. When creating each screen for “Campus Konbini application”, I followed the similar structure  by defining each screen with a unique name. 
+  
+## General Screen Setup (background)
+  
+```.kv
+ FitImage:
+        source:"blackkombini.jpeg"
+    MDCard:
+        border_radius: 20
+        radius: [15]
+        size_hint: 0.5, 0.8
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        orientation: "vertical"
+        md_bg_color:[1,1,1, 0.4] 
+```
+This Kivy language code block describes the visual design of the "HomeScreen" screen. All the GUI components are arranged underneath the screen that has the corresponding label to create the actual user interface. I used this as the application's default setup for 5 out of 6 screens (except “WelcomeScreen” screen), giving them all the same layout and background image. 
+This piece of code contains the background (FitImage) and the semi-transparent rectangle (MDCard) of the GUI. I’ve changed the opacity of MDCard by using line `md_bg_color:[1,1,1,0.4]`. This is the list that represents the RGBA (red, green, blue, alpha) color values of the background color, where the first three values (1, 1, 1) represent the red, green, and blue color channels respectively, and the fourth value (0.4) represents the alpha channel, which controls the opacity of the color. Additionally, I've utilized rounded borders (border radius) from the KivyMD website by  to make it look more visually attractive.
+ 
+## MDFillRoundFlatIconButton
+  
+```.kv
+  MDFillRoundFlatIconButton:
+            text: "Add new item"
+            pos_hint: {"center_x":0.5,"center_y":0.65}
+            md_bg_color:app.theme_cls.primary_light
+            size_hint: 0.45,0.07
+            on_release:
+                root.parent.current = "InputScreen"
+```
+This piece of code represents a flat button with round shape and filled color.  It is intended to be used in Material Design applications to provide an easy and visually appealing way for users to interact with the app. After comparing different types of buttons, I have decided to use this one along with MDRaisedButton, which is raised button with a rectangular shape and a filled color. Text, position, color, and size are all defined using simple variables. In this scenario, the on release function specifies that the button switches to the RegisterScreen when it is clicked (root.parent.current = "RegisterScreen").
+  
+## MDTextField 
+```.kv
+MDTextField:
+    id:passwd
+    hint_text: "Enter password"
+    helper_text_mode: "on_error"
+    password: True
+    size_hint: .8, .1
+    pos_hint: {"center_x":.5}
+    icon_left: "lock"
+```
+The code creates an MDTextField widget that allows users to input text. The MDTextField is defined with an ID of “passwd" and several attributes such as hint_text, helper_text_mode, helper_text, and icon_left. The password attribute is set to True, indicating that the text field is intended for password input. The helper_text_mode attribute is set to "on_error," which displays an error message if the input provided is invalid. Additionally, the use of helper_text_mode highlights algorithm design by providing a specific feedback mechanism for users in the event of an error.
+  
+## MDLabel
+  
+```.kv
+
+MDLabel:
+    text: "Welcome"
+    text_color: "#000000"
+    font_style: 'H2'
+    halign: 'center'
+    size_hint: 1, 0.14
+    pos_hint:{"center_x":0.5, "center_y":0.1}
+
+MDLabel:
+    id: login_label
+    text: "Campus Konbini App"
+    font_style: 'H4'
+    halign: 'center'
+    size_hint: 1,.09
+    pos_hint:{"center_x":0.5, "center_y":0.4}
+
+```
+This is an MDLabel's KV code. MDLabels are text labels that appear on the screen and act as markers for the user to show them where they are in the program. The user can tell they have accessed the "Campus konbini" application because I used the MDLabel as the headline for my "Homescreen" screen in this instance.
+  
+## MDSlider
+  
+```.kv
+MDSlider:
+    id: quantity
+    min: 0
+    max: 10
+    value: 5
+    humb_color_down: app.theme_cls.accent_color
+    pos_hint:{"center_x":0.5, "center_y":0.4}
+    size_hint: 0.4,0.07
+    text: quantity.value
+    step:1
+    hint_bg_color: "white"
+```
+  
+MDSlider is a customizable slider widget that allows the user to select a value within a specified range by dragging a thumb along a track. I used it in order to allow users to input the number of products sold in a visually interesting and appealing way. Attributes “min“ and “max” in this code indicate to minimum and maximum values of the number of items sold, whereas attribute “value” sets the initial value of the slider to 5. Attribute “step” sets the step size of the slider to 1, meaning that it will only be able to take on integer values between the minimum and maximum values.
+  
