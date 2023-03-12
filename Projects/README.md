@@ -106,8 +106,8 @@ This function serves to update the table displayed in the History Screen. The pu
 
 | Description              | Category     | Input                                                                                                                                                 | Expected output                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |--------------------------|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Test registration system | Unit testing | 1. Run project3.py 2. Click the register button on the Welcome Screen 3. Input data on all the fields 4. Click register                               | After clicking the register button, if the user already exists in the database, a pop-up message will appear and let the user know. If any of the fields where the user input data do not meet specific requirements error message will appear. If all the instructions were followed correctly user will be taken back to the Welcome screen, and be able to log in as all the data are now stored in "campuskonbini" database. |
-| Test login system        | Unit testing | 1. Run project3.py 2. Click the login button on the Welcome Screen 4. Input data on all the fields 5. Click login                                     | After clicking the log-in button, if the user doesn't exist, a pop-up message will appear letting the user know. If user exists and the password is correct user will be taken to the Home screen                                                                                                                                                                                                                                |
+| Test registration system | Unit testing | 1. Run project3.py 2. Click the register button on the Welcome Screen 3. Input data on all the fields 4. Click register                               | After clicking the register button, if the user already exists in the database, a error message will appear and let the user know. If any of the fields where the user input data do not meet specific requirements error message will appear. If all the instructions were followed correctly user will be taken back to the Welcome screen, and be able to log in as all the data are now stored in "campuskonbini" database. |
+| Test login system        | Unit testing | 1. Run project3.py 2. Click the login button on the Welcome Screen 4. Input data on all the fields 5. Click login                                     | After clicking the log-in button, if the user doesn't exist, a error message will appear letting the user know. If user exists and the password is correct user will be taken to the Home screen                                                                                                                                                                                                                                |
 | Test Home screen         | Unit testing | 1. Run project3.py 2. Login 3. Click all the 3 buttons displayed on the Home screen (add a new item, history, log out)                                | After clicking the "Add new item" button user should be taken to the Input screen; History screen if the user clicked the "History" button and Welcome screen if a user clicked "Log out".                                                                                                                                                                                                                                       |
 | Test Input screen        | Unit testing | 1. Run project3.py  2. Login 3. Input data on all the 4 fields (date, name of the item, quantity, and the profit made)                                | After clicking "Select Date of Entry" the date picker will be displayed. After clicking input all of the data input should be stored in the database in the "items" table. A pop-up message appears letting the user know that the item was stored successfully                                                                                                                                                                  |
 | Test History screen      | Unit testing | 1. Run project3.py 2. Login 3. Press "History" button on the Home Screen                                                                              | After clicking the "History" button, all the data inputted by the user is displayed in the table, the user will not be able to see the data input by another user.                                                                                                                                                                                                                                                               |
@@ -145,7 +145,7 @@ This function serves to update the table displayed in the History Screen. The pu
 | 25      | Present application to the client                        | Having a feedback about application from the client                                                                          | 20 minutes    | 6.3.2023.         | C        |
 | 26      | Finalize test plans                                      | Write test plan with inputs and expected outputs                                                                             | 45 minutes    | 7.3.2023.         | B        |
 | 27      | Finalize program based on the feedback                   | Add improvements to the code based on the clients feedback                                                                   | 4 hours       | 7.3.2023.         | C        |
-| 28      | Write criteria C                                         | Add parts of the code and descriptions                                                                                       | 2 hours       | 8.3.2023.         |          |
+| 28      | Write criteria C                                         | Add parts of the code and descriptions                                                                                       | 2 hours       | 8.3.2023.         | C        |
 
   
 # Criteria C: Development
@@ -269,3 +269,223 @@ MDSlider:
   
 MDSlider is a customizable slider widget that allows the user to select a value within a specified range by dragging a thumb along a track. I used it in order to allow users to input the number of products sold in a visually interesting and appealing way. Attributes “min“ and “max” in this code indicate to minimum and maximum values of the number of items sold, whereas attribute “value” sets the initial value of the slider to 5. Attribute “step” sets the step size of the slider to 1, meaning that it will only be able to take on integer values between the minimum and maximum values.
   
+## Python code
+ 
+### Setting up the file
+  
+```.py
+import sqlite3
+from kivymd.app import MDApp
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.screen import MDScreen
+from kivymd.uix.pickers import MDDatePicker
+from kivymd.uix.datatables import MDDataTable
+from secure_password import encrypt_password, check_password
+```
+Many libraries that will be utilized to create the "Campus Konbini" application are imported by this code. The data on the items sold will be stored in a SQLite database, which can be accessed and modified using the sqlite3 library. The user's password is encrypted using the secure password library before being stored in the database to ensure its security. The application's graphical user interface (GUI), which will be user-friendly and simple to use, is created using the KivyMD library.  
+  
+### Database worker
+  
+#### Accessing data stored in the database
+  
+```.py
+    def search(self, query):  # Function for searching inside the db
+        result = self.cursor.execute(query).fetchall()  # Run a query and fetch the result
+        return result  # Return the found result
+  ```
+This technique, known as search, requires a query parameter as an input. The technique uses a cursor object to conduct the query and the fetchall() method to retrieve all of the results. The outcome is saved in the result variable before being given back to the user. By running a SQL query that is supplied as the query argument, this method can be used to look up records in a database table. Its use enables me to obtain query results across application development domains that are required for my solution and the requirements of my client.
+  
+## Login system
+  
+### Criteria 2. The application must have a working login system, where all the credentials entered have to match with the database (registered data).
+  
+```.py
+        def try_login(self):
+        uname = self.ids.uname.text
+        passwd = self.ids.passwd.text
+
+        db = database_worker("campuskonbini")
+        query_2 = f"SELECT username from users"
+        user_list = []
+        uname_result = db.search(query_2)
+        for element in uname_result:
+            user_list.append(element[0])
+        print(user_list)
+
+        if len(uname)==0:
+            self.ids.uname.error = True
+            self.ids.uname.helper_text = "This Field requires input"
+
+        elif uname not in user_list:
+            self.ids.uname.error = True
+            self.ids.uname.helper_text = "User does not exist."
+
+
+        if not passwd:
+            self.ids.passwd.error = True
+            self.ids.passwd.helper_text = "This Field requires input"
+
+        print("User tried to login")
+        # Get the input username and password and print it
+        uname = self.ids.uname.text
+        passwd = self.ids.passwd.text
+        db = database_worker("campuskonbini")
+        query = f"SELECT * from users WHERE username='{uname}'"
+        result = db.search(query)
+        if len(result) == 1:
+            id,email,username,hashed_password = result[0]
+            if check_password(passwd, hashed_password):
+                self.user_id = id
+                self.ids.uname.text = ""
+                self.ids.passwd.text = ""
+                self.parent.current = "HomeScreen"
+                print("Login successful")
+                db.close()
+
+
+```
+
+Here, I developed an algorithm that makes use of If statements to determine whether the user credentials are accurate and connected to any existing users, in response to a request for secure application access from my client. One cannot access or use the application without a username and password that match one of the users in the "campuskonbini" database. If the username doesn't exist in the database, the KivyMD text will change to "User does not exist." and if the password doesn't match the username, the KivyMD text will change to "Password is incorrect".
+  
+Part of the computational thinking used in this code is an abstraction. The code abstracts away the details of the database interaction by calling the ‘database_worker' function to handle database connections and queries. This allows the login function to focus on the high-level task of validating user input and determining whether the user should be logged in or not.
+  
+## Registration system
+  
+### Checking if user already exists
+  
+```.py
+db = database_worker("campuskonbini")
+      query_2 = f"SELECT username from users"
+      user_list = []
+      uname_result = db.search(query_2)
+      for element in uname_result:
+          user_list.append(element[0])
+      print(user_list)
+      if uname not in user_list:
+    # code ommited for display
+      else:
+        self.ids.uname.error = True
+        self.ids.uname.helper_text = "This user already exists"
+
+```
+  
+The code is for checking whether a user with a given username already exists in the database. First, a SQL query is constructed to retrieve all usernames from the ‘users’ table. Then, an empty list is created to store the usernames retrieved from the database. Next, the SQL query is executed using the search method of database_worker class which retrieves all usernames from the users table and returns them as a list of tuples. The for loop iterates through the list of tuples and appends the first element (the username) of each tuple to the user_list. Finally, the code checks weather username already exist in the database and if it does displays error message “This user already exists.”
+
+This code can be used to prevent the same person from unintentionally enrolling twice with different passwords or several users from using the same username, which could cause confusion. It guarantees that each user has a distinct username, which will enable effective control and security of data stored in the database.
+  
+### Hash setup
+  
+```.py
+pwd_config = CryptContext(schemes=["pbkdf2_sha256"],
+                          default="pbkdf2_sha256",
+                          pbkdf2_sha256__default_rounds=30000
+                          )
+```
+  
+This is the setup for the hashing and encryption of the passwords and inserted inputs. With the "from passlib.context import CryptContext" I was able to utilize the library to its fullest extent.
+  
+```.py
+def encrypt_password(user_password):
+    """ This function receives the plain text password from the user and returns the hash salted.
+    """
+    return pwd_config.encrypt(user_password)
+```
+This function encrypts the password from a standard string to a hashed string. This uses the "from passlib.context import CryptContext" library to encrypt it.
+  
+## Decrypting the password
+  
+```.py
+def check_password(user_password, hashed):
+    return pwd_config.verify(user_password, hashed)
+```
+  
+This function will decrypt the passwords on the database and match it with the inputted password to see if it matches. This uses the "from passlib.context import CryptContext" library to decrypt the passwords from the database.
+  
+Hashing is the process of employing a mathematical function to transform an input (such as a password) into a fixed-length string of characters. A hash is the resultant string that is specific to the input and cannot be reversed to reveal the original password. As the original password cannot be recovered from the hash, even if the database is stolen, the hash can be used as a secure means to store passwords.
+
+User passwords are protected in this application via hashing before being saved in the database. When a user creates an account or modifies their password, the password is first added to the database's "users" table after being hashed using the "encrypt password" function. Because the users' passwords are saved as hashes, this makes sure that even if the database is compromised, the hackers will be unable to recover the passwords.
+  
+## Add item
+ 
+### Inserting the query 
+ 
+```.py
+db = database_worker("campuskonbini")
+        query = f"INSERT into items (user_id,date,item_name,quantity,income) values('{user_id}','{date}', '{item_name}', '{quantity}','{income}')"
+        db.run_save(query)
+```
+
+In general, entering Python queries is a crucial part of communicating with databases and is necessary for creating reliable data-driven applications. This query enables data to be inserted to a certain database table. The table name and the values to be inserted are specified in the insert query, which is a string.
+This is in charge of adding food items to the application's database. The code executes a SQL query using a database worker object to insert data about the item, including the name, date when it was sold, number of items sold, and amount of money made. By developing a method that describes a series of instructions to insert data into the database, I made use of algorithm design. Algorithm design involves identifying the steps needed to solve a problem or complete a task. By utilizing algorithm design, the application can perform create, read, update, and delete operations effectively, providing an efficient tool for managing the data of “Campus Konbini” project.
+
+  
+## Date picker
+  
+```.py
+    def show_date_picker(self):
+        date_dialog = MDDatePicker()
+        date_dialog.bind(on_save=self.on_save)
+        date_dialog.open()
+
+    def on_save(self, instance, value, date_range):
+        self.selected_date = value
+        value = value.strftime("%m/%d/%Y")
+        self.ids.date.text = f"{value}"
+```
+The piece of code above shows how I allowed the user to input date. I decided to use MDDatePicker class, which gives the user access to a graphical date picker widget. When a user chooses a date from the widget, the on save event is launched. An event listener is attached to this event using the bind() method. The second technique, "on save," refreshes the text field displaying the expiration date while also saving the specified date to the database. When the user chooses a date using the MDDatePicker widget, it is called. I have chosen to save date in format 'dd/mm/yyyy'. I believe by using MDDatePicker I have simplified the process of selecting a date and enhanced the user experience of the application.
+
+In order to make the functionality for selecting the date of selling item simpler and easier to use, I employed abstraction in this code. Additionally, it emphasizes how algorithm design and breakdown are used to produce a seamless and effective user experience.
+  
+## Creating a table
+ 
+```.py
+def on_pre_enter(self, *args):
+
+  self.data_table = MDDataTable(
+      use_pagination=True,
+      size_hint=(0.9, 0.6),
+      pos_hint={"center_x": 0.5, "top": 0.75},
+      column_data=[
+          ("ID", 20),
+          ("Date", 20),
+          ("Name of the item", 35),
+          ("Quantity", 20),
+          ("Income", 35)
+      ],
+      check=True
+  )
+  self.data_table.bind(on_row_press=self.row_pressed)
+  self.data_table.bind(on_check_press=self.check_pressed)
+  self.add_widget(self.data_table)
+  self.update()
+```
+In order to display the table, which is a requirement in the success criteria, the size of it on the screen has to be determined. Next, the columns of the table (attributes) has to be displayed. To do so, the name of the attributes along with the number of pixels required is written in the object called "column_data". Then, the values of each attribute in the data table must be displayed in the table on the screen.
+  
+## Pop-up dialog
+  
+```.py
+  dialog = MDDialog(title="Thank you, item deleted!",
+                              text=f"Your item has been successfully deleted.")
+```
+This code creates a dialog box using KivyMD to notify the user that an item has been successfully deleted from the database. It takes the item ID as input and displays it in the dialog box. This code is reusable in different parts of the application where a similar confirmation dialog box is needed
+  
+## Deleting a row from the table
+  
+```.py
+     def delete(self):
+        # Function to delete checked rows in the table
+        checked_rows = self.data_table.get_row_checks()  # Get the checked rows
+        # delete
+        db = database_worker("campuskonbini")
+        for r in checked_rows:
+            item_id = r[0]  # use item_id instead of id
+            query = f"delete from items where id= {item_id}"  # use item_id instead of id
+            db.run_save(query)
+            # Create and open the alert dialog to confirm item has been deleted
+            dialog = MDDialog(title="Thank you, item deleted!",
+                              text=f"Your item has been successfully deleted.")
+            dialog.open()
+        db.close()
+        self.update()
+  ```
+The code above demonstrates how to remove checked rows from a database table. The get row checks() method is used in the code to access the checked rows, and a loop and a delete query are used to delete them. In order to warn the user that the item has been destroyed, the code also makes use of the MDDialog method. Other parts of the code use this structure to display pop-up dialogs.
