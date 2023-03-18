@@ -34,6 +34,8 @@ class quiz041(MDApp):
 app = quiz041()
 app.run()
 ```
+
+## Kivy code
 ```.kv
 Screen:
     size:500, 500
